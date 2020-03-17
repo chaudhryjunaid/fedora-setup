@@ -18,21 +18,21 @@
     value: 1
   become: true
 
-- name: Enable RPMFusion NVIDIA repo
-  ini_file:
-    dest: /etc/yum.repos.d/rpmfusion-nonfree-nvidia-driver.repo
-    section: rpmfusion-nonfree-nvidia-driver
-    option: enabled
-    value: 1
-  become: true
+#- name: Enable RPMFusion NVIDIA repo
+#  ini_file:
+#    dest: /etc/yum.repos.d/rpmfusion-nonfree-nvidia-driver.repo
+#    section: rpmfusion-nonfree-nvidia-driver
+#    option: enabled
+#    value: 1
+#  become: true
 
-- name: Enable RPMFusion Steam repo
-  ini_file:
-    dest: /etc/yum.repos.d/rpmfusion-nonfree-steam.repo
-    section: rpmfusion-nonfree-steam
-    option: enabled
-    value: 1
-  become: true
+#- name: Enable RPMFusion Steam repo
+#  ini_file:
+#    dest: /etc/yum.repos.d/rpmfusion-nonfree-steam.repo
+#    section: rpmfusion-nonfree-steam
+#    option: enabled
+#    value: 1
+#  become: true
 
 # Import RPMFusion GPG keys
 - name: Import RPMFusion Free GPG key
@@ -77,19 +77,19 @@
   become: true
 
 
-- name: Add flathub flatpak
-  flatpak_remote:
-    name: flathub
-    state: present
-    flatpakrepo_url: "{{ flatpak_repo }}"
-    method: system
-  ignore_errors: true
-  changed_when: false
-  register: flatpak_flathub_result
-  retries: "{{ task_retries }}"
-  delay: "{{ task_delay }}"
-  until: flatpak_flathub_result is succeeded
-  become: true
+#- name: Add flathub flatpak
+#  flatpak_remote:
+#    name: flathub
+#    state: present
+#    flatpakrepo_url: "{{ flatpak_repo }}"
+#    method: system
+#  ignore_errors: true
+#  changed_when: false
+#  register: flatpak_flathub_result
+#  retries: "{{ task_retries }}"
+#  delay: "{{ task_delay }}"
+#  until: flatpak_flathub_result is succeeded
+#  become: true
 
 # There might a be a bug in the flatpack module have to do it manually
 # Note this, only works once (not idempotent)

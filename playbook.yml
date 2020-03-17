@@ -2,4 +2,9 @@
 - hosts: localhost
   become: true
   roles:
-  - skyline
+    - skyline
+  vars_prompt:
+    - name: "ansible_sudo_pass"
+      prompt: "Sudo password"
+      private: yes
+  

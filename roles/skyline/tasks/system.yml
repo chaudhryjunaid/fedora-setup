@@ -25,43 +25,6 @@
     - Reload dconf
   become: true
 
-- name: Ensure directory exists for Korora extras
-  file:
-    dest: /usr/share/korora
-    state: directory
-    owner: root
-    group: root
-    mode: "u=rwx,g=rx,o=rx"
-  become: true
-
-- name: Install Solarized dircolors for Korora shell profile
-  copy:
-    src: dircolors.ansi-universal
-    dest: /usr/share/korora/dircolors.ansi-universal
-    owner: root
-    group: root
-    mode: "u=rw,g=r,o=r"
-  become: true
-
-- name: Korora shell profile
-  copy:
-    src: korora.sh
-    dest: /etc/profile.d/korora.sh
-    owner: root
-    group: root
-    mode: "u=rw,g=r,o=r"
-  become: true
-
-- name: Configure sysrq magic keys
-  sysctl:
-    name: kernel.sysrq
-    value: "{{ korora_sysrq_value }}"
-    sysctl_set: yes
-    state: present
-    reload: yes
-    sysctl_file: /etc/sysctl.d/90-sysrq.conf
-  become: true
-
 - name: Rebuild man cache
   command: /usr/bin/mandb
   register: result_mandb
@@ -80,8 +43,8 @@
     enabled: yes
     state: started
 
-- name: Add tsweets to the docker group
+- name: Add junaid to the docker group
   user:
-    name: tsweets
+    name: junaid
     groups:
     - docker

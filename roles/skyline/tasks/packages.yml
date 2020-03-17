@@ -12,12 +12,12 @@
   retries: "{{ task_retries }}"
   delay: "{{ task_delay }}"
 
-- name: Install Steam
-  dnf:
-    name: steam
-    state: installed
-  retries: "{{ task_retries }}"
-  delay: "{{ task_delay }}"
+#- name: Install Steam
+#  dnf:
+#    name: steam
+#    state: installed
+# retries: "{{ task_retries }}"
+#  delay: "{{ task_delay }}"
 
 - name: Install Lollypop Music Player
   dnf:
@@ -46,4 +46,3 @@
     - docker-ce-cli
     - containerd.io
     state: latest
-
