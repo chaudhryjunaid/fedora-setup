@@ -3,8 +3,4 @@
   become: true
   roles:
     - skyline
-  vars_prompt:
-    - name: "ansible_sudo_pass"
-      prompt: "Sudo password"
-      private: yes
   
