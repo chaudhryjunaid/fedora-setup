@@ -43,8 +43,8 @@
     enabled: yes
     state: started
 
-- name: Add junaid to the docker group
+- name: "Add {{lookup('env','USER')}} to the docker group"
   user:
-    name: junaid
+    name: "{{ lookup('env','USER') }}"
     groups:
     - docker
