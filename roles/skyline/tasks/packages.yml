@@ -1,3 +1,23 @@
+- name: "Install base packages"
+  dnf:
+    name: "{{ packages['install'] }}"
+    state: present
+  register: package_install_result
+  retries: "{{ task_retries }}"
+  delay: "{{ task_delay }}"
+  until: package_install_result is succeeded
+  become: true
+
+- name: "Remove unneeded packages"
+  dnf:
+    name: "{{ packages['remove'] }}"
+    state: absent
+  register: package_remove_result
+  retries: "{{ task_retries }}"
+  delay: "{{ task_delay }}"
+  until:  package_remove_result is succeeded
+  become: true
+
 - name: Install Visual Studio Code
   dnf:
     name: code
@@ -12,12 +32,12 @@
   retries: "{{ task_retries }}"
   delay: "{{ task_delay }}"
 
-- name: Install Steam
-  dnf:
-    name: steam
-    state: installed
-  retries: "{{ task_retries }}"
-  delay: "{{ task_delay }}"
+#- name: Install Steam
+#  dnf:
+#    name: steam
+#    state: installed
+# retries: "{{ task_retries }}"
+#  delay: "{{ task_delay }}"
 
 - name: Install Lollypop Music Player
   dnf:
@@ -46,4 +66,3 @@
     - docker-ce-cli
     - containerd.io
     state: latest
-
